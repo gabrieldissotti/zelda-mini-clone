@@ -13,15 +13,15 @@ public class Player extends Rectangle {
 	}
 
 	public void tick() { // player movement rules
-		if(right) {
+		if(right && World.isFree(x+speed, y)) {
 			x+=speed;
-		} else if(left) {
+		} else if(left && World.isFree(x-speed, y)) {
 			x-=speed;
 		}
 		
-		if(up) {
+		if(up && World.isFree(x, y-speed)) {
 			y-=speed;
-		} else if(down) {
+		} else if(down && World.isFree(x, y+speed)) {
 			y+=speed;
 		}
 	}

@@ -14,12 +14,14 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	
 	public static int WIDTH = 480, HEIGHT = 480;
 	public Player player;
+	public World world;
 
 	public Game() {
 		this.addKeyListener(this); // define class that have key listener method implementations
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		
-		player = new Player(0,0); 
+		player = new Player(32,32);
+		world = new World();
 	}
 	
 	public void tick() { // the tick responsibility is the game rules like movement, collisions and others 
@@ -41,6 +43,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.fillRect(0, 0, WIDTH, HEIGHT); // create the black background (if not, the screen will blink forever)
 		
 		player.render(g);
+		world.render(g);
 		
 		bs.show();
 	}
