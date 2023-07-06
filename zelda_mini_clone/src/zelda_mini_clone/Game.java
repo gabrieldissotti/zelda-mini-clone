@@ -4,20 +4,26 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, KeyListener {
 	
 	public static int WIDTH = 480, HEIGHT = 480;
+	public Player player;
 
 	public Game() {
+		this.addKeyListener(this); // define class that have key listener method implementations
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		
+		player = new Player(0,0); 
 	}
 	
 	public void tick() { // the tick responsibility is the game rules like movement, collisions and others 
-		
+		player.tick();
 	}
 	
 	public void render() { // where we render graphics
@@ -34,9 +40,7 @@ public class Game extends Canvas implements Runnable {
 		g.setColor(Color.black);
 		g.fillRect(0, 0, WIDTH, HEIGHT); // create the black background (if not, the screen will blink forever)
 		
-		
-		g.setColor(Color.red);
-		g.fillRect(10, 10, 100, 100); // create a rectangle in screen
+		player.render(g);
 		
 		bs.show();
 	}
@@ -71,6 +75,38 @@ public class Game extends Canvas implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = true;
+		} else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = true;
+		} else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.down = true;
+		} else if(e.getKeyCode() == KeyEvent.VK_UP) {
+			player.up = true;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			player.right = false;
+		} else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			player.left = false;
+		} else if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			player.down = false;
+		} else if(e.getKeyCode() == KeyEvent.VK_UP) {
+			player.up = false;
 		}
 	}
 
