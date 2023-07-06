@@ -1,7 +1,10 @@
 package zelda_mini_clone;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
@@ -11,6 +14,31 @@ public class Game extends Canvas implements Runnable {
 
 	public Game() {
 		this.setPreferredSize(new Dimension(WIDTH, HEIGHT));
+	}
+	
+	public void tick() { // the tick responsibility is the game rules like movement, collisions and others 
+		
+	}
+	
+	public void render() { // where we render graphics
+		BufferStrategy bs = this.getBufferStrategy();
+		
+		if(bs == null) { // create a buffer strategy if it does not exists
+			this.createBufferStrategy(3);
+			return;
+		}
+		
+		Graphics g = bs.getDrawGraphics();
+
+		
+		g.setColor(Color.black);
+		g.fillRect(0, 0, WIDTH, HEIGHT); // create the black background (if not, the screen will blink forever)
+		
+		
+		g.setColor(Color.red);
+		g.fillRect(10, 10, 100, 100); // create a rectangle in screen
+		
+		bs.show();
 	}
 	
 	public static void main(String[] args) {
@@ -34,6 +62,15 @@ public class Game extends Canvas implements Runnable {
 	public void run() {
 		while(true) {
 			System.out.println("Chamando game looping!"); // infinite run until close window
+			tick(); // run game rules
+			render(); // render game
+			
+			try {
+				Thread.sleep(1000/60); // render in 60 FPS
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
