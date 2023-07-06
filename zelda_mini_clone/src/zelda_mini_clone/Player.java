@@ -27,7 +27,6 @@ public class Player extends Rectangle {
 	}
 	
 	public void render(Graphics g) { // render player color in x and y position with 32px of size
-		g.setColor(Color.blue);
-		g.fillRect(x, y, width, height);
+		g.drawImage(Spritesheet.player_front, x, y, 32, 32, null);
 	}
 }
