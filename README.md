@@ -17,3 +17,8 @@ My realy first game created with user interactions
 ## Added tiles in blocks
 
 ![Animação-3](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/088ec717-c136-4b04-ae8f-76e08bd09689)
+
+## Increase world and window size
+
+![Animação-4](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/003cdc98-c066-49c5-941d-2c2d6ea4a99e)
+
