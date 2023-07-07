@@ -8,21 +8,25 @@ import java.util.List;
 public class World {
 	public static List<Block> blocks = new ArrayList<Block>();
 	
-	public World() {
-		for(int i = 0; i < 15; i++) { // 15 blocks are the window size divided by object size (480/32)
-			blocks.add(new Block(i*32,0));
+	public World(int screenWidth, int screenHeight, int blockSize) {
+		int screenColumns = screenWidth / blockSize;
+		int screenRows = screenHeight / blockSize;
+		
+		
+		for(int i = 0; i < screenColumns; i++) { // 15 blocks are the window size divided by object size (480/32)
+			blocks.add(new Block(i*blockSize,0));
 		}
 		
-		for(int i = 0; i < 15; i++) {
-			blocks.add(new Block(i*32,480-32)); // 480-32 to add blocks at bottom
+		for(int i = 0; i < screenColumns; i++) {
+			blocks.add(new Block(i*blockSize,screenHeight-blockSize)); // 480-32 to add blocks at bottom
 		}
 		
-		for(int i = 0; i < 15; i++) { // add blocks on vertical at left
-			blocks.add(new Block(0,i*32));
+		for(int i = 0; i < screenRows; i++) { // add blocks on vertical at left
+			blocks.add(new Block(0,i*blockSize));
 		}
 		
-		for(int i = 0; i < 15; i++) { // add blocks on vertical at right
-			blocks.add(new Block(480-32,i*32));
+		for(int i = 0; i < screenRows; i++) { // add blocks on vertical at right
+			blocks.add(new Block(screenWidth-blockSize,i*blockSize));
 		}
 	}
 	

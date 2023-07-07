@@ -12,7 +12,8 @@ import javax.swing.JFrame;
 
 public class Game extends Canvas implements Runnable, KeyListener {
 	
-	public static int WIDTH = 480, HEIGHT = 480;
+	public static int WIDTH = 640, HEIGHT = 480;
+	public static int SCALE = 3;
 	public Player player;
 	public World world;
 
@@ -22,8 +23,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 		new Spritesheet();
 		
-		player = new Player(32,32);
-		world = new World();
+		int blockSize = 32;
+		
+		player = new Player(blockSize,blockSize);
+		
+		world = new World(WIDTH, HEIGHT, blockSize);
 	}
 	
 	public void tick() { // the tick responsibility is the game rules like movement, collisions and others 
@@ -42,7 +46,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 		
 		g.setColor(new Color(0, 135, 13));
-		g.fillRect(0, 0, WIDTH, HEIGHT); // create the black background (if not, the screen will blink forever)
+		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE); // create the black background (if not, the screen will blink forever)
 		
 		player.render(g);
 		world.render(g);
