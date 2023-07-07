@@ -41,7 +41,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		Graphics g = bs.getDrawGraphics();
 
 		
-		g.setColor(Color.black);
+		g.setColor(new Color(0, 135, 13));
 		g.fillRect(0, 0, WIDTH, HEIGHT); // create the black background (if not, the screen will blink forever)
 		
 		player.render(g);
