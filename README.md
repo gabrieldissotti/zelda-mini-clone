@@ -33,3 +33,7 @@ My realy first game created with user interactions
 ## Enemies: added enemies walking by world
 
 ![Animação-7](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/8a20084f-f2bb-4556-a844-0da290199c3c)
+
+## Enemies: added logic to follow player
+
+![Animação-8](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/1dccfdc6-5b8c-46b9-9842-54968be54a6d)
