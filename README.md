@@ -25,3 +25,8 @@ My realy first game created with user interactions
 ## Animation: Switch between sprites when moving down
 
 ![Animação-5](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/759a0a95-29a7-45fb-93ae-b892e492874b)
+
+## Shoots: added shoots system
+
+![Animação-6](https://github.com/gabrieldissotti/zelda-mini-clone/assets/33178519/3fd81870-e40a-4966-b095-e4937c3de553)
+
