@@ -9,6 +9,7 @@ public class Spritesheet {
 	public static BufferedImage spritesheet;
 
 	public static BufferedImage[] player_front; 
+	public static BufferedImage[] enemy_front; 
 	public static BufferedImage tile_wall; 
 	
 	public Spritesheet() {
@@ -21,6 +22,11 @@ public class Spritesheet {
 		player_front = new BufferedImage[2];
 		player_front[0] = Spritesheet.getSprite(0, 11, 16, 16);
 		player_front[1] = Spritesheet.getSprite(16, 11, 16, 16);
+		
+
+		enemy_front = new BufferedImage[2];
+		enemy_front[0] = Spritesheet.getSprite(269, 255, 16, 16);
+		enemy_front[1] = Spritesheet.getSprite(285, 255, 16, 16);
 		
 		tile_wall = Spritesheet.getSprite(280, 221, 16, 16);  // define position of sprite in sprite sheet
 	}

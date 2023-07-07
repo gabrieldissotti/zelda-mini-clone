@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -16,6 +18,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public static int SCALE = 3;
 	public Player player;
 	public World world;
+	public List<Enemy> enemies = new ArrayList<Enemy>();
 
 	public Game() {
 		this.addKeyListener(this); // define class that have key listener method implementations
@@ -25,13 +28,19 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		
 		int blockSize = 32;
 		
-		player = new Player(blockSize,blockSize);
-		
 		world = new World(WIDTH, HEIGHT, blockSize);
+		
+		player = new Player(32,32);
+		enemies.add(new Enemy(32,32));		
+		enemies.add(new Enemy(64,64));		
 	}
 	
 	public void tick() { // the tick responsibility is the game rules like movement, collisions and others 
 		player.tick();
+		
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).tick();
+		}
 	}
 	
 	public void render() { // where we render graphics
@@ -49,6 +58,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		g.fillRect(0, 0, WIDTH*SCALE, HEIGHT*SCALE); // create the black background (if not, the screen will blink forever)
 		
 		player.render(g);
+		for(int i = 0; i < enemies.size(); i++) {
+			enemies.get(i).render(g);
+		}
 		world.render(g);
 		
 		bs.show();
