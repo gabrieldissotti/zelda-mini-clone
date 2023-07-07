@@ -28,6 +28,8 @@ public class World {
 		for(int i = 0; i < screenRows; i++) { // add blocks on vertical at right
 			blocks.add(new Block(screenWidth-blockSize,i*blockSize));
 		}
+		
+		blocks.add(new Block(200, 200));
 	}
 	
 	public static boolean isFree(int x, int y) {

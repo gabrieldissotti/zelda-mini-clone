@@ -4,9 +4,10 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Enemy extends Rectangle {
-	public int speed = 4;
+	public int speed = 2;
 	public int right = 1, up = 0, down = 0, left = 0;
 	
 	public int currentAnimation = 0;
@@ -22,9 +23,32 @@ public class Enemy extends Rectangle {
 	public Enemy(int x, int y) {
 		super(x, y, 32, 32); // player size and position
 	}
+	
+	public void followPlayer() {
+		Player player = Game.player;
+		
+		if(x < player.x && World.isFree(x + speed, y)) {
+			if(new Random().nextInt(100) < 50) 
+				x+=speed;
+		} else if(x > player.x && World.isFree(x - speed, y)) {
+			if(new Random().nextInt(100) < 70)
+				x-=speed;
+		}
+		
+		if(y < player.y && World.isFree(x, y + speed)) {
+			if(new Random().nextInt(100) < 50)
+				y+=speed;
+		} else if(y > player.y && World.isFree(x, y - speed)) {
+			if(new Random().nextInt(100) < 50)
+				y-=speed;
+		}
+	}
 
 	public void tick() { // player movement rules
 		boolean moved = true;
+		
+		followPlayer();
+		
 		if(right == 1 && World.isFree(x + 1, y)) {
 			x++;
 		}
